@@ -1,0 +1,46 @@
+{% extends 'portfolio/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    All Blogs - Personal Porfolio
+{% endblock %}
+
+{% block content %}
+
+    <section class="page-section mt-5  mb-0" id="about">
+        <div class="container">
+            <!-- About Section Heading-->
+            <div class="text-center">
+                <h2 class="page-section-heading d-inline-block ">{{ blogs.count }} WRITTEN BLOGS</h2>
+            </div>
+            <!-- Icon Divider-->
+            <div class="divider-custom ">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- About Section Content-->
+            {% for blog in blogs %}
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <a href="{% url 'blog:detail' blog.id %}"><h4 class="">{{ blog.title }}</h4></a>
+                        <p class="pre-wrap lead">{{ blog.text|truncatechars:200|striptags }}</p>
+                        <p>Posted on {{ blog.date|date:'M d Y' }}</p>
+                        <hr>
+                    </div>
+                    <hr>
+                    <div class="col-lg-2"></div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
